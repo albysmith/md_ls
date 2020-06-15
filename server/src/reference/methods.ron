@@ -1,0 +1,2463 @@
+MethodList (
+	methods: [
+
+Method (
+	id: "evaluate_unit_storage",
+	description: "Evaluates the default unit storage of the given object. Returns lists containing unit categories, mks, macros and amounts. Indices of the lists are in sync.",
+	output: [
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+		Output (
+			attr: "categories",
+			datatype: Some([List]),
+			contains: Some([Unitcategory]),
+		),
+		Output (
+			attr: "macros",
+			datatype: Some([List]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "mks",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "evaluate_deployable_storage",
+	description: "Evaluates the default deployable storage of the given object. Returns lists containing deployable categories, mks, macros and amounts. Indices of the lists are in sync.",
+	output: [
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+		Output (
+			attr: "categories",
+			datatype: Some([List]),
+			contains: Some([Deployablecategory]),
+		),
+		Output (
+			attr: "macros",
+			datatype: Some([List]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "mks",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "evaluate_missile_storage",
+	description: "Evaluates the default missile storage of the given object. Returns lists containing missile macros and amounts. Indices of the lists are in sync.",
+	output: [
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+		Output (
+			attr: "macros",
+			datatype: Some([List]),
+			contains: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "add_cargo",
+	description: "Add cargo to an object",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "remove_cargo",
+	description: "Remove cargo from an object",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "generate_shortage_reports",
+	description: "Generate reports of wares which are either in short supply, insufficient or overflowing",
+	output: [
+		Output (
+			attr: "insufficient",
+			datatype: Some([Table]),
+		),
+		Output (
+			attr: "shortage",
+			datatype: Some([Table]),
+		),Output (
+			attr: "overflow",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "get_factions_by_relation",
+	description: "Get factions by matching relation (object or faction attribute required)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Faction]),
+		),
+	],
+),
+Method (
+	id: "get_factions_by_tag",
+	description: "Get factions by matching tag (tag required)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Faction]),
+		),
+	],
+),
+Method (
+	id: "get_suitable_storage_modules",
+	description: "Evaluate needed storage modules based on production requirements",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "get_control_entities",
+	description: "Get all control entities of the specified object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Entity]),
+			contains: Some([Entity]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "create_group",
+	description: "create group of objects",
+	output: [
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+		),
+	],
+),
+Method (
+	id: "add_to_group",
+	description: "add to group of objects",
+	output: [
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+		),
+	],
+),
+Method (
+	id: "remove_group",
+	description: "remove group of objects",
+	output: [
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+		),
+	],
+),
+Method (
+	id: "set_value",
+	description: "Set a variable value (dummy condition that is always met, so it can be used like an action)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "add_actor_to_room",
+	description: "Add NPC actor to a room. This action fails if the actor could not be connected to that room.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "evaluate_habitation_storage",
+	description: "Evaluates the habitation storage needed to store workforce resources for the specified amount of workers and time. Returns cargo volume of required container storage.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_next_bonus_unlocktime",
+	description: "Query the earliest time at which this unlock may be triggered again.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Time]),
+		),
+	],
+),
+Method (
+	id: "apply_attackstrength",
+	description: "Apply damage from an attack to target, returns if target was killed",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "get_control_entities",
+	description: "Get all control entities of the specified object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Entity, List]),
+			contains: Some([Entity]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "change_relation_on_attack",
+	description: "Change relation of the attacked object towards the attacker. This value will be set to true if there was an effect on the relation (or at least the relation boost decay), otherwise it is set to false.
+                The action can fail in several cases, e.g. if attacker and victim are of the same faction.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "change_relation_on_boarding",
+	description: "Change relation of the boarded object towards the boarder.  This value will be set to true if there was an effect on the relation (or at least the relation boost decay), otherwise it is set to false.
+                The action can fail in several cases, e.g. if attacker and victim are of the same faction.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "change_relation_on_kill",
+	description: "Change relation of the killed object towards the killer. This value will be set to true if there was an effect on the relation (or at least the relation boost decay), otherwise it is set to false.
+                The action can fail in several cases, e.g. if attacker and victim are of the same faction.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "check_line_of_sight",
+	description: "Check if object has line of sight to the target (uses ray casts)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "check_is_area_obstructed",
+	description: "Check if a ship is inside the designated area. Ignores mass traffic (as long as it's in the lane) and ships that have collision avoidance currently disabled (due to docking or parking).",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "check_is_build_location_free",
+	description: "Check if a build location is free. Takes highways and objects like stations and gates into account, but ignores ships or asteroids.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "clamp_equipment_amount",
+	description: "Clamp wares and amounts of ordered ammunition, units, and deployables depending on resources available to the builder",
+	output: [
+		Output (
+			attr: "resultunits",
+			datatype: Some([Table]),
+		),
+		Output (
+			attr: "resultammo",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "clamp_trade_amount",
+	description: "Clamp trade amount value based on buyer/seller storage situation (bundle/unbundle states are taken into account and the appropriate storages - cargo, ammo or units - are checked)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_building_position",
+	description: "Get buildership position outside of the stations boundaries, requires using 'position', 'space' and 'macro' OR an already placed 'construction'",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "connect_to_trade_location",
+	description: "Connect a ship to a trade location (= reserve parking space)
+            If result is null then the operation failed.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "disconnect_from_trade_location",
+	description: "Disconnect a ship from a trade location (= free up parking space)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "add_build_to_construct_ship",
+	description: "Add a build task to construct a ship",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "add_build_to_expand_station",
+	description: "Add a build task to expand a station",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "add_build_to_modify_ship",
+	description: "Add a build task to upgrade or restock a ship",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "get_build_people",
+	description: "Get build people definitions in the form of a set of lists, either to be removed or added",
+	output: [
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+		Output (
+			attr: "currentroles",
+			datatype: Some([List]),
+			contains: Some([Entityrole]),
+		),
+		Output (
+			attr: "newroles",
+			datatype: Some([List]),
+			contains: Some([Entityrole]),
+		),
+		Output (
+			attr: "races",
+			datatype: Some([List]),
+			contains: Some([Race]),
+		),
+		Output (
+			attr: "skills",
+			datatype: Some([List]),
+			contains: Some([Skilltype]),
+		),
+		Output (
+			attr: "people",
+			datatype: Some([List]),
+			contains: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "transfer_people",
+	description: "Transfer people as defined in a build order, or by this definition",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([NPC]),
+		),
+	],
+),
+Method (
+	id: "reserve_build_plot",
+	description: "Reserve a build plot, creating the base station and build storage",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Buildstorage]),
+		),
+	],
+),
+Method (
+	id: "get_subordinate_jobs",
+	description: "",
+	output: [
+		Output (
+			attr: "jobs",
+			datatype: Some([List]),
+			contains: Some([String]),
+		),
+		Output (
+			attr: "amount",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_subordinate_macro",
+	description: "Get the possible subordinate macro(s) of a job ship",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "get_suitable_job",
+	description: "Get suitable job(s) by their category and basket data",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List, String]),
+			contains: Some([String]),
+		),
+	],
+),
+Method (
+	id: "request_job_ship",
+	description: "Request a new job ship for a purpose",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "find_requested_job_ship",
+	description: "Find requested job ship(s). Allows specialised filtering by 'requester', 'ware', 'includeexisting' and 'includewaiting'.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "spawn_waiting_job_ship",
+	description: "Spawn a waiting job ship into an area of space or a dock",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "create_replacement_subordinates",
+	description: "Create needed subordinates which can be built by buildobject. The resulting ships will be disconnected as waiting subordinates.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "create_group",
+	description: "Create an empty group",
+	output: [
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+		),
+	],
+),
+Method (
+	id: "create_list",
+	description: "Create a list of given element count (default is 0), filled with null values. Use [] syntax instead for lists with fixed size/content.
+            Note that the list variable name has to be provided in the name attribute, not the list attribute.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List]),
+		),
+	],
+),
+Method (
+	id: "create_crate",
+	description: "Create a crate in a room",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "create_lockbox",
+	description: "Create a Lockbox (wrapped inside its own object)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "create_object",
+	description: "Create an Object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "create_signal_leak",
+	description: "Create a signal leak on an object or in space",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Signalleak]),
+			contains: Some([Signalleak]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Signalleak]),
+		),
+	],
+),
+Method (
+	id: "create_order",
+	description: "Creates an AI order and adds it to an object's order queue",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "create_trade_order",
+	description: "Creates an AI trade order and adds it to an object's order queue. A trade deal is created based on the given trade offer,
+            so the trade can be performed in the future even if the trade offer changes or disappears in the meantime.
+            The trade order ID is hard-coded. The trade deal is associated with the order (accessible via $order.trade) and is passed to the order as the trade parameter.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "create_orientation",
+	description: "Create an orientation(rotation) value. refobject takes priority over refposition if both are supplied",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "create_construction_sequence",
+	description: "Create a construction sequence for a station randomly, connecting station modules with each other (but not applying the result to the station automatically).
+            Since it takes a lot of CPU time to calculate the result, the action is completed instantly and the result will be provided later via event_object_construction_sequence_created.
+            To retrieve the result immediately as part of the action, use the child element immediate, but be aware that it will block the rest of the game until the result is available.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Constructionsequence]),
+		),
+	],
+),
+Method (
+	id: "remove_from_construction_sequence",
+	description: "Remove entries from the construction sequence that use the provided macros, also detaching all descendant entries in the connection tree.
+            It is possible that more entries get removed than requested in the macro list.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "generate_loadout",
+	description: "Generate a loadout for a given object",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Loadout]),
+		),
+		Output (
+			attr: "used",
+			datatype: Some([List]),
+			contains: Some([Macro, Ware]),
+		),
+		Output (
+			attr: "remaining",
+			datatype: Some([List]),
+			contains: Some([Macro, Ware]),
+		),
+	],
+),
+Method (
+	id: "get_loadout",
+	description: "Get a loadout via an ID",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Loadout]),
+		),
+	],
+),
+Method (
+	id: "create_loadout",
+	description: "Create a loadout using a fixed loadout definition",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Loadout]),
+		),
+	],
+),
+Method (
+	id: "create_random_position_in_boundingbox",
+	description: "Create a random position value within the bounding box of a component (the resulting value is relative to the component)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "create_random_position_outside_boundingbox",
+	description: "Create a random position value outside the bounding box of a component (the resulting value is relative to the component)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "create_trade_offer",
+	description: "Create a trade offer and if provided, add it to an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Trade]),
+		),
+	],
+),
+Method (
+	id: "create_position_outside_boundingbox",
+	description: "Create a position value just outside the bounding box of a component, in the direction of the given position (the resulting value is relative to the component).
+            If the given position is inside the bounding box, it will be used as the result.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "check_is_position_inside_boundingbox",
+	description: "Check if a position is inside an object's bounding box",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "find_object_surface",
+	description: "Create a position value directly on the surface of an object, in the direction of the given position (the resulting value is relative to the space, or the object if no space was supplied).
+            The rotation value will be set from the surface normal.
+            If no position is supplied, it will be randomized in a sphere around the object.
+            If the position return value is null, no raycast was performed. This can happen if the collision mesh was not loaded yet. To handle this case, wait a second or so and retry.",
+	output: [
+		Output (
+			attr: "posname",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotname",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "create_position",
+	description: "Create a position value",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "transform_position",
+	description: "Create a position value",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "create_rotation",
+	description: "Create a rotation value",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "create_ship",
+	description: "Create a ship",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "dock",
+			datatype: Some([Dockingbay]),
+		),
+		Output (
+			attr: "macro",
+			datatype: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "create_station",
+	description: "Create a station",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Station]),
+			contains: Some([Station]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Station]),
+		),
+	],
+),
+Method (
+	id: "create_factory",
+	description: "Create a factory",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Station]),
+			contains: Some([Station]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Station]),
+		),
+	],
+),
+Method (
+	id: "create_module",
+	description: "Create and add a module to an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Module]),
+			contains: Some([Module]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Module]),
+		),
+	],
+),
+Method (
+	id: "create_prop",
+	description: "Create a prop",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "create_dynamic_interior",
+	description: "Create and add a dynamic interior to an object",
+	output: [
+		Output (
+			attr: "interiorname",
+			datatype: Some([Room]),
+		),
+		Output (
+			attr: "corridorname",
+			datatype: Some([Room]),
+		),
+		Output (
+			attr: "roomname",
+			datatype: Some([Room]),
+		),
+	],
+),
+Method (
+	id: "create_control_entity",
+	description: "Create a control entity for the specified object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "create_npc_from_template",
+	description: "Create a NPC from a NPC template on an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([NPC]),
+		),
+	],
+),
+Method (
+	id: "create_npc_template",
+	description: "Create a NPC template and place it on an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Npctemplate]),
+		),
+	],
+),
+Method (
+	id: "deplete_yield",
+	description: "Deplete yield for a certain ware in a zone of a specific region. If container is provided, attempt to add the wares to it (which may affect the deleted amount)",
+	output: [
+		Output (
+			attr: "amount",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_highest_resource_yield",
+	description: "Get the highest local resource yield in a sector",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_resource_gatherrate",
+	description: "Determine rate at which the refobject can drain resources from the supplied region in the specified zone (averaged using available colletector drones)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Float]),
+		),
+	],
+),
+Method (
+	id: "find_actor_interaction_point",
+	description: "Find a suitable NPC position near an object to interact with it.",
+	output: [
+		Output (
+			attr: "posname",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotname",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "find_asteroid_in_cluster",
+	description: "Find asteroid in cluster near specified position",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "find_buy_offer",
+	description: "Find matching buy offer(s)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List, Trade]),
+			contains: Some([Trade]),
+		),
+	],
+),
+Method (
+	id: "find_closest_octree_object",
+	description: "Find closest object that has an octree",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "find_closest_resource",
+	description: "Find closest resource",
+	output: [
+		Output (
+			attr: "wares",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+		Output (
+			attr: "zone",
+			datatype: Some([Zone]),
+		),
+		Output (
+			attr: "sector",
+			datatype: Some([Sector]),
+		),
+		Output (
+			attr: "distance",
+			datatype: Some([Length]),
+		),
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "find_closest_station_part",
+	description: "Find closest part of a station",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Component]),
+		),
+	],
+),
+Method (
+	id: "find_closest_undiscovered_position",
+	description: "Find the closest position in a sector that the player hasn't uncovered yet. May return null if none exists.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "find_cluster",
+	description: "Find matching cluster(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Cluster]),
+			contains: Some([Cluster]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Cluster]),
+		),
+	],
+),
+Method (
+	id: "find_cluster_in_range",
+	description: "Find matching cluster(s) within 'maxdistance' jumps of 'object'",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Cluster]),
+			contains: Some([Cluster]),
+		),
+		Output (
+			attr: "distances",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "find_sector_in_range",
+	description: "Find matching sector(s) within 'maxdistance' jumps of 'object'",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Sector]),
+			contains: Some([Sector]),
+		),
+		Output (
+			attr: "distances",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "find_connected_macro",
+	description: "Search a macro for a connected macro or macros, optionally of a certain type.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "find_room",
+	description: "Find matching room(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Room]),
+			contains: Some([Room]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Room]),
+		),
+	],
+),
+Method (
+	id: "find_dockingbay",
+	description: "Find matching dock(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Dockingbay]),
+			contains: Some([Dockingbay]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Dockingbay]),
+		),
+	],
+),
+Method (
+	id: "find_dockingbay_for_trade",
+	description: "Find dockingbay for trade",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Dockingbay]),
+		),
+	],
+),
+Method (
+	id: "find_gravidar_contact",
+	description: "Find gravidar contact(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "find_signalleak_location",
+	description: "Find signal leak locations at an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_npc_slot",
+	description: "Find npc slot in an object, walkable module or room",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_npc_waypoint",
+	description: "Find npc waypoint in an object, walkable module or room",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "get_floor_position",
+	description: "Get the closest valid floor position for a NPC (requires the object to have active physics)",
+	output: [
+		Output (
+			attr: "context",
+			datatype: Some([Component]),
+		),
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "room",
+			datatype: Some([Room]),
+		),
+		Output (
+			attr: "tags",
+			datatype: Some([List]),
+			contains: Some([Tag]),
+		),
+	],
+),
+Method (
+	id: "find_crate_slot",
+	description: "Find a crate slot in a walkable module or room",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_prop_slot",
+	description: "Find a prop slot in a room",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_player_transporter_slot",
+	description: "Find player transporter slot in a ship or room. Note that such slots are distinct from NPC waypoint/transport slots.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_object_component",
+	description: "Find matching component(s) contained in an object",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Component]),
+			contains: Some([Component]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Component]),
+		),
+	],
+),
+Method (
+	id: "find_resource",
+	description: "Find resource (random location in cluster)",
+	output: [
+		Output (
+			attr: "wares",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+		Output (
+			attr: "zone",
+			datatype: Some([Zone]),
+		),
+		Output (
+			attr: "sector",
+			datatype: Some([Sector]),
+		),
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "check_object",
+	description: "Check an object against filters",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "find_active_repair_mass_traffic",
+	description: "Find a repair mass traffic network for an object that doesn't have an end time set already",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "find_pos_in_mass_traffic_at_time",
+	description: "Find position in mass traffic network where the object would be at the specified time (only works for ships originating from mass traffic!)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "find_random_pos_in_mass_traffic",
+	description: "Find random position in mass traffic network",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "find_object",
+	description: "Find matching object(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "find_sector",
+	description: "Find matching sector(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Sector]),
+			contains: Some([Sector]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Sector]),
+		),
+	],
+),
+Method (
+	id: "find_sell_offer",
+	description: "Find matching sell offer(s)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List, Trade]),
+			contains: Some([Trade]),
+		),
+	],
+),
+Method (
+	id: "find_ship",
+	description: "Find matching ship(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "find_ship_by_true_owner",
+	description: "Find matching ship(s) by true owner faction. More efficient than using find_ship with 'trueowner' filter. 'space' must be of class Space.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "find_station",
+	description: "",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Station]),
+			contains: Some([Station]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Station]),
+		),
+	],
+),
+Method (
+	id: "find_station_by_true_owner",
+	description: "Find matching station(s) by true owner faction. More efficient than using find_station with the 'trueowner' filter. 'space' must be of class Space.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Station]),
+			contains: Some([Station]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Station]),
+		),
+	],
+),
+Method (
+	id: "find_gate",
+	description: "Find matching gate(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Gate]),
+			contains: Some([Gate]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Gate]),
+		),
+	],
+),
+Method (
+	id: "find_tradeoffer_parking_slot",
+	description: "Find tradeoffer location parking ComponentSlot",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "find_highway",
+	description: "Find matching highways(s)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Highway]),
+			contains: Some([Highway]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Highway]),
+		),
+	],
+),
+Method (
+	id: "find_zone",
+	description: "Find matching zone(s) - excludes highways",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Zone]),
+			contains: Some([Zone]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Zone]),
+		),
+	],
+),
+Method (
+	id: "get_attackstrength",
+	description: "Get attack strength against target",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Hitpoints]),
+		),
+	],
+),
+Method (
+	id: "get_character_definition",
+	description: "Get character macro or reference by filtering via category parameters",
+	output: [
+		Output (
+			attr: "macro",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "reference",
+			datatype: Some([List, NPC]),
+			contains: Some([NPC]),
+		),
+	],
+),
+Method (
+	id: "get_crew_exchange_lists",
+	description: "Get the lists of people to be exchanged between the trader and the tradepartner of a ship-to-ship crew exchange trade.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Table]),
+		),
+	],
+),
+Method (
+	id: "get_docking_approach_pos",
+	description: "Get docking approach pos",
+	output: [
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotation",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "get_gate_approach_pos",
+	description: "Get gate approach pos",
+	output: [
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotation",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "get_global_path",
+	description: "Get global path from start to end (multiple=0 returns first value. multiple=1 returns whole path as lists)",
+	output: [
+		Output (
+			attr: "component",
+			datatype: Some([List, Component]),
+			contains: Some([Component]),
+		),
+		Output (
+			attr: "offset",
+			datatype: Some([List, Position]),
+			contains: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "get_jump_path",
+	description: "Get jump path from start to end (multiple=0 returns first value. multiple=1 returns whole path as lists)",
+	output: [
+		Output (
+			attr: "component",
+			datatype: Some([List, Component]),
+			contains: Some([Component]),
+		),
+	],
+),
+Method (
+	id: "get_closest_highway_offset",
+	description: "Get the internal highway offset which is closest to this position",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "get_safe_pos",
+	description: "Get a safe position in a zone or sector",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "get_satellite_coverage",
+	description: "Get the percentage of hexes in an area that are being covered by player-owned satellites",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Float]),
+		),
+	],
+),
+Method (
+	id: "get_ship_definition",
+	description: "",
+	output: [
+		Output (
+			attr: "macro",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "reference",
+			datatype: Some([List, Ship]),
+			contains: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "get_module_definition",
+	description: "Get module macro or reference by filtering via category parameters",
+	output: [
+		Output (
+			attr: "macro",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "reference",
+			datatype: Some([List, Module]),
+			contains: Some([Module]),
+		),
+	],
+),
+Method (
+	id: "get_module_set_macro",
+	description: "Get station macro of a module set",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "get_construction_plan",
+	description: "Get construction plan from stations.xml by filtering via category parameters",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List, Constructionsequence]),
+			contains: Some([Constructionsequence]),
+		),
+		Output (
+			attr: "rawname",
+			datatype: Some([List, Constructionplanentryid]),
+			contains: Some([Constructionplanentryid]),
+		),
+	],
+),
+Method (
+	id: "get_station_definition",
+	description: "Get station macros from stations.xml by filtering via category parameters",
+	output: [
+		Output (
+			attr: "macro",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+	],
+),
+Method (
+	id: "get_room_definition",
+	description: "Get room macro or reference by filtering via category parameters",
+	output: [
+		Output (
+			attr: "macro",
+			datatype: Some([List, Macro]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "doors",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+		Output (
+			attr: "reference",
+			datatype: Some([List, Module]),
+			contains: Some([Module]),
+		),
+	],
+),
+Method (
+	id: "",
+	description: "",
+	output: [
+		Output (
+			attr: "",
+			datatype: Some([]),
+			contains: Some([]),
+		),
+	],
+),
+Method (
+	id: "get_target_points",
+	description: "Get position list of matching target points from a macro",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Position]),
+		),
+	],
+),
+Method (
+	id: "get_waypoint_path",
+	description: "Get position list of matching waypoints from a component, starting from a start waypoint and progressing along the links until the end is reached",
+	output: [
+		Output (
+			attr: "posname",
+			datatype: Some([List]),
+			contains: Some([Position]),
+		),
+		Output (
+			attr: "rotname",
+			datatype: Some([List]),
+			contains: Some([Rotation]),
+		),
+		Output (
+			attr: "radiusname",
+			datatype: Some([List]),
+			contains: Some([Length]),
+		),
+	],
+),
+Method (
+	id: "get_text_ids_in_range",
+	description: "Get list of text IDs in given range on a TextDB page",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_trade_parking_pos",
+	description: "Get trade parking position (for L and XL trade ships that cannot dock directly), optionally gets the quadrant of the ship where the traffic lanes are.",
+	output: [
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotation",
+			datatype: Some([Rotation]),
+		),
+		Output (
+			attr: "quadrant",
+			datatype: Some([Quadrant]),
+		),
+	],
+),
+Method (
+	id: "get_ware_definition",
+	description: "Get a single or multiple definitions for wares from the WareDB.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+	],
+),
+Method (
+	id: "get_ware_reservation",
+	description: "Get reserved space for ware (optionally object specific) on an object.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_wares_illegal_to",
+	description: "Get list of wares illegal to a faction",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+	],
+),
+Method (
+	id: "get_equipment_build_wares",
+	description: "Get equipment wares this object can build",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+	],
+),
+Method (
+	id: "get_ship_build_wares",
+	description: "Get ship wares this object can build",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Ware]),
+		),
+	],
+),
+Method (
+	id: "get_zone_exit_pos",
+	description: "Get a safe position for leaving a zone towards a destination (destination must be in same sector!)",
+	output: [
+		Output (
+			attr: "position",
+			datatype: Some([Position]),
+		),
+		Output (
+			attr: "rotation",
+			datatype: Some([Rotation]),
+		),
+	],
+),
+Method (
+	id: "get_zone_at_position",
+	description: "Get the zone at this sector position (may return null if none exists)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Zone]),
+		),
+	],
+),
+Method (
+	id: "is_in_quadrant",
+	description: "Check if target object is in all specified quadrants of object, returns false if target is not detected at all",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "launch_countermeasures",
+	description: "Launch countermeasures against enemy missile locks or incoming missiles",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "launch_distressdrone",
+	description: "Launch distress dron",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_lasertower",
+	description: "",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_mine",
+	description: "Launch mine",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_navbeacon",
+	description: "Launch navigation beacon",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_resourceprobe",
+	description: "Launch resource probe",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_satellite",
+	description: "Launch satellite",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_drone",
+	description: "Launch drone",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Object]),
+			contains: Some([Object]),
+		),
+		Output (
+			attr: "groupname",
+			datatype: Some([Group]),
+			contains: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_masstraffic_drone",
+	description: "Launch a ship of the specified ship group from masstraffic docks. Will attempt to avoid docks that are in use (e.g. while trading)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Object]),
+		),
+	],
+),
+Method (
+	id: "launch_war_drones",
+	description: "Launch war drones. This uses mass traffic, so both objects need to be stationary for the whole duration.
+            Ensure that you kill the resulting mass traffic network when you're done with it, and wait until it's finished before moving away.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "launch_repair_drones",
+	description: "Launch repair drones. This uses mass traffic, so both objects need to be stationary for the whole duration.
+            Ensure that you kill the resulting mass traffic network when you're done with it, and wait until it's finished before moving away.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "sort_collectables_by_value",
+	description: "Sort a list of collectables by price value. Note: Sorting collectables with identical price values will retain their relative order from the input list. Consider shuffling the collectables list first.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List]),
+			contains: Some([Collectable]),
+		),
+	],
+),
+Method (
+	id: "play_cutscene",
+	description: "Start playing a cutscene",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "check_walk_path",
+	description: "Check whether a NPC can walk do a destination",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "check_weapon_active",
+	description: "Check whether the weapon is currently active",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "check_weapon_installed",
+	description: "Check whether the weapon is installed/available",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "request_docking",
+	description: "Request docking procedure for ship, result is true if the request was queued. Check this.ship.assigneddock to see if the request was granted.",
+	output: [
+		Output (
+			attr: "queuedresult",
+			datatype: Some([Boolean]),
+		),
+		Output (
+			attr: "grantedresult",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "request_undocking",
+	description: "Request undocking procedure for ship, result is true if the request was queued. If the ship is docked, this is always either granted or queued.",
+	output: [
+		Output (
+			attr: "queuedresult",
+			datatype: Some([Boolean]),
+		),
+		Output (
+			attr: "grantedresult",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "request_retrieval",
+	description: "Request this ship to be taken out of internal ship storage, result is true if the request was queued. If the ship is docked, this is always either granted or queued.",
+	output: [
+		Output (
+			attr: "queuedresult",
+			datatype: Some([Boolean]),
+		),
+		Output (
+			attr: "grantedresult",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "add_mass_traffic_quota",
+	description: "Add a quota to a zone's main mass traffic network. Must supply either a macro, a ship group, or a job ID. If no end time is supplied you need to store it and stop the quota when you no longer need it.",
+	output: [
+		Output (
+			attr: "quota",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "get_macros_in_mass_traffic",
+	description: "Get all macros currently active in a zone's main mass traffic network",
+	output: [
+		Output (
+			attr: "macros",
+			datatype: Some([List]),
+			contains: Some([Macro]),
+		),
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "get_units_in_mass_traffic",
+	description: "Get all units of a category currently active in a mass traffic networ",
+	output: [
+		Output (
+			attr: "amounts",
+			datatype: Some([List]),
+			contains: Some([Integer]),
+		),
+	],
+),
+Method (
+	id: "request_mass_traffic_ship",
+	description: "Request a ship to be spawned in a zone's mass traffic network",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Ship]),
+		),
+	],
+),
+Method (
+	id: "request_gate",
+	description: "Request from a ship to lock the Gate for going through (Use 'unlock' true to unlock)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "create_boarding_operation",
+	description: "Create a boarding operation and add it as an inbound operation on the target",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Operation]),
+		),
+	],
+),
+Method (
+	id: "transfer_marines_from_operation",
+	description: "Transfer a list of marines from a boarding operation to an object",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "transfer_money",
+	description: "Transfers amount from one entity to another, if possible",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Money]),
+		),
+	],
+),
+Method (
+	id: "move_order",
+	description: "Moves an order to a new position in the order queue (or checks whether moving is possible). Note that this can have side effects for already running orders and can fail in some cases.
+            If the movement changes the first order in the queue that was in the started state (non-critical), the running order will be reset and start over once it reaches the front of the queue.
+            Moving an order fails if:
+            (1) the order is a default order,
+            (2) the newindex value is not a valid index in the order queue,
+            (3) the order is a running order in the critical state or the finish state, or
+            (4) the movement would replace a running order in the critical state or the finish state.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "set_object_hacked",
+	description: "Sets an object as hacked",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([List]),
+			contains: Some([Component]),
+		),
+		Output (
+			attr: "dropresult",
+			datatype: Some([List]),
+			contains: Some([Drop]),
+		),
+	],
+),
+Method (
+	id: "show_interactive_notification",
+	description: "Show an interactive notification in the target monitor",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "substitute_text",
+	description: "Search in a text for sub-strings and substitutes them",
+	output: [
+		Output (
+			attr: "text",
+			datatype: Some([String]),
+		),
+	],
+),
+Method (
+	id: "initiate_player_trade",
+	description: "Initiate a trade between an object and the player's primary ship.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "get_object_value",
+	description: "Get the credit value of an object",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Money]),
+		),
+	],
+),
+Method (
+	id: "get_pilot_dockslot",
+	description: "Retrieve the dockslot that a pilot entity is currently using for docking.
+            NOTE: This action is not supposed to be used normally, it only exists for fixing a bug that appears in early game versions.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "sort_trades",
+	description: "Sort trade list. Note: Sorting trades with identical sort values will retain their relative order from the input list. Consider shuffling the trade list first.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List]),
+			contains: Some([Trade]),
+		),
+	],
+),
+Method (
+	id: "sort_people",
+	description: "Sort people list. Note: Sorting people with identical sort values will retain their relative order from the input list. Consider shuffling the templatelist first.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List]),
+			contains: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "activate_platform_trigger",
+	description: "Activate a platform trigger (e.g. a button or certain doors)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "deactivate_platform_trigger",
+	description: "Deactivate a platform trigger (e.g. a button or certain doors)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Boolean]),
+		),
+	],
+),
+Method (
+	id: "create_trade_computer",
+	description: "Creates a trade computer entity on the specified object that will attempt to perform the first trade order in the current order queue, provided the tradepartner is the container the object is currently docked at.
+            After completion of the order the trade computer will remove itself. (see orders.base.tradecomputer)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "estimate_travel_time",
+	description: "Estimate the time it takes to fly to a target location (takes highways and travel mode into account)",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Time]),
+		),
+	],
+),
+// from md.xsd
+Method (
+	id: "create_cue_actor",
+	description: "Create an actor object and associate it with this cue",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Entity]),
+		),
+	],
+),
+Method (
+	id: "create_platform_actor",
+	description: "Create an actor object on a platform manually and fire the corresponding event_platform_actor_created event.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([NPC]),
+		),
+	],
+),
+Method (
+	id: "create_presentation_cluster",
+	description: "Create a presentation cluster for use by cutscene system (must be destroyed after use)",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Cluster]),
+		),
+	],
+),
+Method (
+	id: "create_representative_actor",
+	description: "Create an faction representative actor on a random landing platform in the given sector, and fire the corresponding event_platform_actor_created event. If a representative already exists for this sector, no actor will be created; the result will be the existing actor.",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([NPC]),
+		),
+	],
+),
+Method (
+	id: "find_mission_offer_location",
+	description: "Find a mission offer location on a container",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([List, Componentslot]),
+			contains: Some([Componentslot]),
+		),
+	],
+),
+Method (
+	id: "run_actions",
+	description: "Perform actions of the referenced library in a separate context, providing parameters to the library and optionally receiving a result value.
+            The referenced library must specify purpose=run_actions.",
+	output: [
+		Output (
+			attr: "result",
+			datatype: Some([Unknown]),
+		),
+	],
+),
+Method (
+	id: "add_holomap",
+	description: "Add a holomap to a rendertarget",
+	output: [
+		Output (
+			attr: "name",
+			datatype: Some([Object]),
+		),
+	],
+),
+
+	]
+)
