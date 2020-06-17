@@ -37,11 +37,11 @@ pub fn parse_expression(expression: &str) -> Option<Vec<Parsed>> {
     let mut vec = vec![];
     let mut lex = Token::lexer(expression).spanned();
     while let Some((token, span)) = lex.next() {
-        let datatypes = infer_types(&token);
+        // let datatypes = infer_types(&token);
         vec.push(Parsed {
             token: token,
             pos: span,
-            datatype: datatypes,
+            datatype: None,
         })
     }
 

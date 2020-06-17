@@ -1,7 +1,16 @@
-use crate::completion::{Namespace, Variable};
+use crate::graph::{Namespace, Variable};
 use crate::expression_parser::*;
+use serde::Deserialize;
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
+pub struct TypeRef<'a> {
+    pub datatypes: Vec<super::script_properties::DataTypeProperties<'a>>,
+    pub keywords: Vec<super::script_properties::KeywordProperties<'a>>,
+    pub methods: Vec<super::ron_parse::Method<'a>>,
+    pub events: Vec<super::ron_parse::Event<'a>>,
+}
+
+#[derive(Debug, Clone, Deserialize, PartialEq)]
 pub enum DataTypes {
     Unknown,
     Component,
@@ -61,7 +70,7 @@ pub enum DataTypes {
     Region,
     Entity,
     Nonplayer,
-    Npc,
+    NPC,
     Weapon,
     Turret,
     Componentslot,
@@ -160,7 +169,7 @@ impl Default for DataTypes {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Keywords {
     Unknown,
     Player,
@@ -396,7 +405,7 @@ pub fn match_datatypes(string: &str) -> DataTypes {
         "region" => DataTypes::Region,
         "entity" => DataTypes::Entity,
         "nonplayer" => DataTypes::Nonplayer,
-        "npc" => DataTypes::Npc,
+        "npc" => DataTypes::NPC,
         "weapon" => DataTypes::Weapon,
         "turret" => DataTypes::Turret,
         "componentslot" => DataTypes::Componentslot,

@@ -1,9 +1,4 @@
 use crate::type_checker::{match_datatypes, match_keyword, DataTypes, Keywords};
-use serde::Deserialize;
-
-const SCRIPTPS: &str = include_str!("reference/scriptproperties.xml");
-const EVENTS: &str = include_str!("reference/events.ron");
-const METHODS: &str = include_str!("reference/methods.ron");
 
 #[derive(Debug, Default)]
 pub struct ScriptProperties<'a> {

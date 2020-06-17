@@ -1,5 +1,4 @@
-EventList (
-	events: [
+[
 // from md.xsd
 Event (
 	id: "event_briefing_started",
@@ -764,7 +763,7 @@ Event (
 	description: "If object is a ship: Event for the specified object getting a free docking bay assigned for docking (object = docking ship)
             If object is a docking bay: Event for the specified object getting a ship assigned to it (object = assigned docking bay)
             If object is the player entity: Event for the player's ship context getting a free docking bay assigned (object = player)",
-	object: Some( [Ship, Dockingbay, Player]),
+	object: Some( [Ship, Dockingbay]),
 ),
 Event (
 	id: "event_object_dock_assigned_at",
@@ -778,7 +777,7 @@ Event (
 	description: "If object is a ship: Event for the specified object getting the dock unassigned for a docking bay (object = ship getting dock unassigned)
             If object is a docking bay: Event for the specified object getting a ship unassigned from it (object = unassigned docking bay)
             If object is the player entity: Event for the player's ship context getting the dock unassigned (object = player)",
-	object: Some( [Ship, Dockingbay, Player]),
+	object: Some( [Ship, Dockingbay]),
 ),
 Event (
 	id: "event_object_dock_unassigned_from",
@@ -1111,26 +1110,26 @@ Event (
 	param2:Some( [Killmethod]),
 	param3:Some ([Component]),
 ),
-Event (
-	id: "event_player_boost_charging_aborted",
-	description: "Event for when the player aborts charging boost",
-	object: Some( [Player]),
-),
-Event (
-	id: "event_player_boost_charging_started",
-	description: "Event for when the player starts charging boost",
-	object: Some( [Player]),
-),
-Event (
-	id: "event_player_boost_started",
-	description: "Event for when the player starts boosting",
-	object: Some( [Player]),
-),
-Event (
-	id: "event_player_boost_stopped",
-	description: "Event for when the player stops boosting",
-	object: Some( [Player]),
-),
+// Event (
+// 	id: "event_player_boost_charging_aborted",
+// 	description: "Event for when the player aborts charging boost",
+// 	object: Some( [Player]),
+// ),
+// Event (
+// 	id: "event_player_boost_charging_started",
+// 	description: "Event for when the player starts charging boost",
+// 	object: Some( [Player]),
+// ),
+// Event (
+// 	id: "event_player_boost_started",
+// 	description: "Event for when the player starts boosting",
+// 	object: Some( [Player]),
+// ),
+// Event (
+// 	id: "event_player_boost_stopped",
+// 	description: "Event for when the player stops boosting",
+// 	object: Some( [Player]),
+// ),
 Event (
 	id: "event_player_build_plot_changed",
 	description: "Event for when a player-owned station's build plot is resized or repositioned (param = station, param2 = old build plot max, param3 = old build plot center)",
@@ -1281,11 +1280,11 @@ Event (
 	param:Some( [Macro]),
 	param2:Some( [Integer]),
 ),
-Event (
-	id: "event_player_collected_powerup",
-	description: "Event for when the player collects a powerup",
-	object: Some( [Player]),
-),
+// Event (
+// 	id: "event_player_collected_powerup",
+// 	description: "Event for when the player collects a powerup",
+// 	object: Some( [Player]),
+// ),
 Event (
 	id: "event_player_collected_ware",
 	description: "Event for when the player collects a ware drop (param = ware, param2 = amount, param3 = collected object)",
@@ -1941,5 +1940,4 @@ Event (
 	description: "Event for when a lockbox has been opened (object = opened lockbox)",
 	object: Some( [Object]),
 ),
-	]
-)
+]
